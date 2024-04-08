@@ -11,7 +11,7 @@
 
     </span>
 
-    <span class=" w-full">
+    <span class="table_cont w-full">
         <span class="w-full flex items-center justify-end my-4 gap-2">
             <v-btn size="small"  elevation="0" class="bg-grey-lighten-3">
                 <v-icon>mdi-refresh</v-icon>
@@ -25,8 +25,6 @@
             <template v-slot:item.check_box="{ item }" v-if="user === 'Chancellor'">
                 <input type='checkbox' :id="item.hep_two_id" :value="item.hep_two_id"
                     @change="toogleCheckBox(item.hep_two_id)">
-
-
             </template>
 
             <template v-slot:item.graduate_files="{ item }">
@@ -80,6 +78,12 @@
                 </div>
             </template>
 
+            <template v-slot:item.status="{item}">
+                <p v-if="item.status != 'Completed'">{{ item.status }}</p>
+                <p v-if="item.status === 'Completed'" class='flex items-center text-teal-700 font-Subheader  text-0.8 gap-1'> <v-icon size="sm">mdi-check-circle</v-icon>Completed</p>
+            </template>
+
+            
             <template v-slot:item.actions="{item}">
 
                 <span class="flex w-full flex-col  gap-2 py-4">
@@ -214,4 +218,12 @@
 .isReject{
     color: red;
 
-}</style>
+}
+
+.table_cont ::v-deep(.v-table .v-table__wrapper > table > thead > tr > th){
+        border: 1px solid white;
+        font-size: 13px;
+
+    }
+
+</style>

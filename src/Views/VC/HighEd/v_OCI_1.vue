@@ -12,7 +12,7 @@
 
 
 
-    <span class=" w-full overflow-x-auto mt-4">
+    <span class="table_cont w-full overflow-x-auto mt-4">
         <span class="w-full flex items-center justify-end my-4 gap-2">
             <v-btn size="small" elevation="0" class="bg-teal-darken-3">
                 <v-icon>mdi-refresh</v-icon>
@@ -23,6 +23,10 @@
             class="elevation-1 " items-per-page="10" style="width:100%; overflow-x: scroll;">
 
 
+            <template v-slot:item.status="{item}">
+                <p v-if="item.status != 'Completed'">{{ item.status }}</p>
+                <p v-if="item.status === 'Completed'" class='flex items-center text-teal-700 font-Subheader  text-0.8 gap-1'> <v-icon size="sm">mdi-check-circle</v-icon>Completed</p>
+            </template>
             <template v-slot:item.supported_file="{ item }">
                 <span class="flex w-full gap-2 py-4">
                     <v-dialog max-width="750">
@@ -210,4 +214,10 @@
     color: red;
 
 }
+
+.table_cont ::v-deep(.v-table .v-table__wrapper > table > thead > tr > th){
+        border: 1px solid white;
+        font-size: 13px;
+
+    }
 </style>
